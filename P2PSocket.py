@@ -1,13 +1,14 @@
-import socket
+import socket  # 导入模块
 from threading import Thread
 import time
 import queue
 
 
 class ServerThread(Thread):
-    def __init__(self, my_queue):
+    """服务线程，进行消息的接收"""
+    def __init__(self, my_queue):  # 初始化线程
         super().__init__()
-        self._ip_address_list = []
+        self._ip_address_list = []   # 保存连接过的ip地址，便于下次连接
         self._ip_address = get_host_ip()
         self._sever = socket.socket()
         self._my_queue = my_queue
